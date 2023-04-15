@@ -1,0 +1,205 @@
+html {
+  height: 100%;
+}
+body {
+  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(135,235,255,1) 25%, rgba(0,212,255,1) 100%);
+}
+
+
+#test {
+  background-color: white;
+  position: absolute;
+  margin-top: 5vh;
+  margin-left: 10vw;
+  margin-bottom: 10vh;
+  margin-right: 10vw;
+  width: 80vw;
+  height: 80vh;
+  padding:0;
+}
+
+img {
+  object-fit: cover;
+  width: 25vw;
+  height: 25vw;
+  min-width: 150px;
+  min-height: 150px;
+  border-color: black;
+
+}
+
+#header {
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+}
+
+#header div {
+  margin-left: 1%;
+}
+
+#nav-bar {
+  /* display: flex; */
+  border-bottom: solid black;
+  margin-bottom: 20px;
+  margin-left: -4px;
+  margin-right: -4px;
+}
+
+ul {
+  width: auto;
+  display: flex;
+  list-style: none;
+  padding: 0px;
+  border-bottom: solid black;
+  /* border: solid 1px blue; */
+}
+
+li {
+  flex: auto;
+  text-align: center;
+  border-left: #000000 1px solid;
+  border-right: #000000 1px solid;
+  overflow: hidden;
+  padding-top: 0.35%;
+  padding-bottom: 0.35%;
+}
+
+li:hover {
+  background: blue;
+  color: white;
+  cursor: pointer;
+}
+
+.text-box {
+  font-size: 1vmax;
+  /* margin-right: 0%; */
+  /* padding: 5%; */
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+
+.pixel-corners,
+.pixel-corners--wrapper {
+  clip-path: polygon(0px calc(100% - 6px),
+    2px calc(100% - 6px),
+    2px calc(100% - 4px),
+    4px calc(100% - 2px),
+    6px calc(100% - 2px),
+    6px 100%,
+    calc(100% - 6px) 100%,
+    calc(100% - 6px) calc(100% - 2px),
+    calc(100% - 4px) calc(100% - 2px),
+    calc(100% - 2px) calc(100% - 4px),
+    calc(100% - 2px) calc(100% - 6px),
+    100% calc(100% - 6px),
+    100% 6px,
+    calc(100% - 2px) 6px,
+    calc(100% - 2px) 4px,
+    calc(100% - 4px) 2px,
+    calc(100% - 6px) 2px,
+    calc(100% - 6px) 0px,
+    6px 0px,
+    6px 2px,
+    4px 2px,
+    2px 4px,
+    2px 6px,
+    0px 6px);
+  position: relative;
+}
+.pixel-corners {
+  border: 2px solid transparent;
+}
+.pixel-corners--wrapper {
+  width: fit-content;
+  height: fit-content;
+}
+.pixel-corners--wrapper .pixel-corners {
+  display: block;
+  clip-path: polygon(2px 6px,
+    4px 6px,
+    4px 4px,
+    6px 4px,
+    6px 2px,
+    calc(100% - 6px) 2px,
+    calc(100% - 6px) 4px,
+    calc(100% - 4px) 4px,
+    calc(100% - 4px) 6px,
+    calc(100% - 2px) 6px,
+    calc(100% - 2px) calc(100% - 6px),
+    calc(100% - 4px) calc(100% - 6px),
+    calc(100% - 4px) calc(100% - 4px),
+    calc(100% - 6px) calc(100% - 4px),
+    calc(100% - 6px) calc(100% - 2px),
+    6px calc(100% - 2px),
+    6px calc(100% - 4px),
+    4px calc(100% - 4px),
+    4px calc(100% - 6px),
+    2px calc(100% - 6px));
+}
+.pixel-corners::after,
+.pixel-corners--wrapper::after {
+  content: "";
+  position: absolute;
+  clip-path: polygon(0px calc(100% - 6px),
+    2px calc(100% - 6px),
+    2px calc(100% - 4px),
+    4px calc(100% - 2px),
+    6px calc(100% - 2px),
+    6px 100%,
+    calc(100% - 6px) 100%,
+    calc(100% - 6px) calc(100% - 2px),
+    calc(100% - 4px) calc(100% - 2px),
+    calc(100% - 2px) calc(100% - 4px),
+    calc(100% - 2px) calc(100% - 6px),
+    100% calc(100% - 6px),
+    100% 6px,
+    calc(100% - 2px) 6px,
+    calc(100% - 2px) 4px,
+    calc(100% - 4px) 2px,
+    calc(100% - 6px) 2px,
+    calc(100% - 6px) 0px,
+    6px 0px,
+    6px 2px,
+    4px 2px,
+    2px 4px,
+    2px 6px,
+    0px 6px,
+    0px 50%,
+    2px 50%,
+    2px 6px,
+    4px 6px,
+    4px 4px,
+    6px 4px,
+    6px 2px,
+    calc(100% - 6px) 2px,
+    calc(100% - 6px) 4px,
+    calc(100% - 4px) 4px,
+    calc(100% - 4px) 6px,
+    calc(100% - 2px) 6px,
+    calc(100% - 2px) calc(100% - 6px),
+    calc(100% - 4px) calc(100% - 6px),
+    calc(100% - 4px) calc(100% - 4px),
+    calc(100% - 6px) calc(100% - 4px),
+    calc(100% - 6px) calc(100% - 2px),
+    6px calc(100% - 2px),
+    6px calc(100% - 4px),
+    4px calc(100% - 4px),
+    4px calc(100% - 6px),
+    2px calc(100% - 6px),
+    2px 50%,
+    0px 50%);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #000000;
+  display: block;
+  pointer-events: none;
+}
+.pixel-corners::after {
+  margin: -2px;
+}
