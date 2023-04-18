@@ -15,9 +15,13 @@
   function init() {
 
     generateClouds();
-    setInterval(function () { generateClouds(); }, 20000);
+    setInterval(function () { generateClouds(); }, 15000);
     setTimeout(function() { generateCharacters() }, 3000);
 
+
+    if (getRandomIntBetween(1, 11) <= 4) { // should be a 40% chance of showing up
+      generatePetals();
+    }
 
     ["touch", "click"].forEach(function (event) {
       let textBox = id("text-box-animation");
@@ -28,7 +32,7 @@
   }
 
   function generateClouds() {
-    let randomInt = getRandomIntBetween(3,6);
+    let randomInt = getRandomIntBetween(3,5);
 
     for (let i = 0; i < randomInt; i++) {
       let cloudImg = gen("img");
@@ -42,12 +46,12 @@
       cloudImg.style.width = randomSize + "vw";
       cloudImg.style.top = randomPosition + "%";
       cloudImg.style["animation-duration"] = randomDuration +  "%";
-      let randomDelay = getRandomIntBetween(1, 5) * 1000;
       cloudImg.addEventListener("animationend", function () {
         console.log("removed");
         cloudImg.remove();
       });
 
+      let randomDelay = getRandomIntBetween(1, 3) * 1000;
       setTimeout(function () {
         id("clouds").append(cloudImg);
       }, randomDelay);
@@ -76,7 +80,7 @@
 
     runningDiv.addEventListener("animationend", function() {
       runningDiv.remove();
-      let randomSeconds = getRandomIntBetween(2,10) * 1000;
+      let randomSeconds = getRandomIntBetween(6,20) * 1000;
       setTimeout(function() {
         generateCharacters();
       }, randomSeconds);
@@ -97,6 +101,51 @@
   function turnOffTextBoxAnimation(textBox) {
     textBox.id = "text-box-no-animation";
     // need to convert this to class instead of id.
+  }
+
+  function generatePetals() {
+    let petalAmount = 20;
+    let petals = [];
+
+    let randomPositions = new Set();
+
+    while (randomPositions.size < petalAmount / 2) {
+      let randomPosition = getRandomIntBetween(0, 40);
+      randomPositions.add(randomPosition);
+    }
+
+    while (randomPositions.size < petalAmount) {
+      let randomPosition = getRandomIntBetween(60, 100);
+      randomPositions.add(randomPosition);
+    }
+
+    let setToArray = Array.from(randomPositions);
+
+    for (let i = 0; i < petalAmount; i++) {
+      let randomInt = getRandomIntBetween(1, 4);
+      let petalElement = gen("div");
+      let petalImage = gen("img");
+
+      petalElement.classList.add("snowflake");
+      petalImage.src = "img/petal" + randomInt + ".gif";
+      petalImage.alt = "cherry blossom petal";
+      petalImage.style.width = "30px";
+      petalElement.style.left = setToArray[i] + "%";
+      petalElement.append(petalImage);
+      petals.push(petalElement);
+    }
+
+    petals.forEach(function (element) {
+      let randomTime = getRandomIntBetween(1,2) * 1000;
+      let randomXDelay = getRandomIntBetween(0, 9);
+      let randomYDelay = getRandomIntBetween(0, 2500);
+      setTimeout(() => {
+        element.style["-webkit-animation-delay"] = randomXDelay + "s," + randomYDelay + "ms";
+        element.style["animation-delay"] = randomXDelay + "s," + randomYDelay + "ms";
+        qs(".snowflakes").append(element);
+
+      }, randomTime);
+    });
   }
 
   /**
