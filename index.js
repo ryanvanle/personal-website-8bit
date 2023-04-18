@@ -2,6 +2,8 @@
 
 (function() {
 
+  const CHARACTERS = ["link.gif", "squirtle.gif", "umbreon.gif", "sonic.gif"];
+
   /**
  * Add a function that will be called when the window is loaded.
  */
@@ -11,17 +13,90 @@
  * CHANGE: Describe what your init function does here.
  */
   function init() {
-    console.log("hello");
-    // THIS IS THE CODE THAT WILL BE EXECUTED ONCE THE WEBPAGE LOADS
+
+    generateClouds();
+    setInterval(function () { generateClouds(); }, 20000);
+    setTimeout(function() { generateCharacters() }, 3000);
+
+
+    ["touch", "click"].forEach(function (event) {
+      let textBox = id("text-box-animation");
+      textBox.parentElement.parentElement.addEventListener(event, function() {
+        turnOffTextBoxAnimation(textBox);
+      });
+    });
   }
 
-  /**
- * Make sure to always add a descriptive comment above
- * every function detailing what it's purpose is
- * Use JSDoc format with @param and @return.
- */
-  function exampleFunction1() {
-    /* SOME CODE */
+  function generateClouds() {
+    let randomInt = getRandomIntBetween(3,6);
+
+    for (let i = 0; i < randomInt; i++) {
+      let cloudImg = gen("img");
+      let randomCloudNumber = getRandomIntBetween(3,5);
+      let randomDuration = getRandomIntBetween(20, 30);
+      let randomPosition = getRandomIntBetween(0, 80);
+      let randomSize = getRandomIntBetween(10, 20);
+
+      cloudImg.src = "img/cloud" + randomCloudNumber + ".png";
+      cloudImg.alt = "cloud";
+      cloudImg.style.width = randomSize + "vw";
+      cloudImg.style.top = randomPosition + "%";
+      cloudImg.style["animation-duration"] = randomDuration +  "%";
+      let randomDelay = getRandomIntBetween(1, 5) * 1000;
+      cloudImg.addEventListener("animationend", function () {
+        console.log("removed");
+        cloudImg.remove();
+      });
+
+      setTimeout(function () {
+        id("clouds").append(cloudImg);
+      }, randomDelay);
+    }
+  }
+
+
+  function generateCharacters() {
+    let randomInt = getRandomIntBetween(2, CHARACTERS.length);
+    let characterSet = new Set();
+    let charactersArray = [];
+
+    for (let i = 0; i < randomInt; i++) {
+      let character = generateCharacterElement();
+      if (characterSet.has(character.alt)) continue;
+      characterSet.add(character.alt);
+      charactersArray.push(character);
+    }
+
+    let runningDiv = gen("div");
+    runningDiv.id = "running";
+
+    charactersArray.forEach(function(characterElement) {
+      runningDiv.append(characterElement);
+    });
+
+    runningDiv.addEventListener("animationend", function() {
+      runningDiv.remove();
+      let randomSeconds = getRandomIntBetween(2,10) * 1000;
+      setTimeout(function() {
+        generateCharacters();
+      }, randomSeconds);
+    })
+
+    id("running-container").append(runningDiv);
+
+  }
+
+  function generateCharacterElement() {
+    let character = CHARACTERS[getRandomIndex(CHARACTERS)];
+    let element = gen("img");
+    element.src = "img/" + character;
+    element.alt = character.split(".")[0];
+    return element;
+  }
+
+  function turnOffTextBoxAnimation(textBox) {
+    textBox.id = "text-box-no-animation";
+    // need to convert this to class instead of id.
   }
 
   /**
@@ -77,4 +152,24 @@
     return document.createElement(tagName);
   }
 
+  /**
+   * Generates a random number from given min to max number.
+   * @param {Number} min - Minimum number
+   * @param {Number} max - Maximum number
+   * @returns random number in the range min to max - 1
+   */
+  function getRandomIntBetween(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+
+  /**
+   * Generates a random number from 0 to maximum available index of the array.
+   * @param {Object[]} array - any array.
+   * @returns {Number} Random index in the array.
+   */
+  function getRandomIndex(array) {
+    return Math.floor(Math.random()*array.length);
+  }
 })();

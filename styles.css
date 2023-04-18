@@ -88,13 +88,20 @@ li:hover {
   font-size: 0.7em;
 }
 
-#text-box span {
+#text-box p span {
   font-family: monospace;
   font-size: large;
-  color:#0000;
+}
+
+#text-box-no-animation {
+  color: black;
+}
+
+#text-box-animation {
+  color:#00000000;
   background:
-    linear-gradient(-90deg,black 5px,#0000 0) 10px 0,
-    linear-gradient(black 0 0) 0 0;
+  linear-gradient(-90deg,black 5px,#0000 0) 10px 0,
+  linear-gradient(black 0 0) 0 0;
   background-size:calc(var(--n)*1ch) 200%;
   -webkit-background-clip:padding-box,text;
   background-clip:padding-box,text;
@@ -145,16 +152,21 @@ footer {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  -webkit-animation: linear infinite;
+  -webkit-animation: linear;
+  animation-iteration-count: 1;
   -webkit-animation-name: run;
   -webkit-animation-duration: 10s;
   /* position: relative; */
   /* overflow: hidden; */
 }
 
+
+
 #running img {
   /* position: absolute; */
   /* bottom: 37px; */
+  margin-left: 3%;
+  margin-right: 3%;
   min-width: 50px;
   min-height: 50px;
   width: 3vw;
@@ -184,10 +196,12 @@ footer {
 }
 
 #clouds img {
+  /* width: 15vw; */
   position: absolute;
-  -webkit-animation: linear infinite;
+  -webkit-animation: linear;
   -webkit-animation-name: run;
   -webkit-animation-duration: 30s;
+  animation-iteration-count: 1;
 }
 
 .pixel-corners,
