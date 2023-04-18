@@ -16,7 +16,7 @@
 
     generateClouds();
     setInterval(function () { generateClouds(); }, 15000);
-    setTimeout(function() { generateCharacters() }, 3000);
+    setTimeout(function() { generateCharacters(); }, 3000);
 
 
     if (getRandomIntBetween(1, 11) <= 4) { // should be a 40% chance of showing up
