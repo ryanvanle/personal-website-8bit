@@ -14,14 +14,17 @@
  */
   function init() {
 
+
     generateClouds();
     setInterval(function () { generateClouds(); }, 15000);
     setTimeout(function() { generateCharacters(); }, 3000);
+    generatePetals();
 
 
-    if (getRandomIntBetween(1, 11) <= 4) { // should be a 40% chance of showing up
-      generatePetals();
-    }
+
+    // if (getRandomIntBetween(1, 11) <= 10) { // should be a 40% chance of showing up
+    //   generatePetals();
+    // }
 
     ["touch", "click"].forEach(function (event) {
       let textBox = id("text-box-animation");
@@ -32,6 +35,8 @@
   }
 
   function generateClouds() {
+
+    if (document.visibilityState === 'hidden') return;
     let randomInt = getRandomIntBetween(3,5);
 
     for (let i = 0; i < randomInt; i++) {
