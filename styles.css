@@ -410,3 +410,130 @@ footer {
   animation-iteration-count: infinite, infinite;
   animation-play-state: running, running
 }
+
+#portfolio {
+  height: 70vh;
+}
+
+.top-text-box-div img {
+  height: 15vh;
+  width: 15vh;
+}
+
+.top-text-box-div {
+  display: flex;
+  justify-content: center;
+  gap: 1%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
+
+.top-text-box {
+  width: 100%;
+  word-wrap: normal;
+}
+
+.project-selector {
+  height: 55vh;
+  width: 25vw;
+
+}
+
+.project-container {
+  margin-top: 2%;
+  display: flex;
+  justify-content: center;
+  gap: 1%;
+}
+
+.project-display {
+  height: 55vh;
+  width: 50vw;
+}
+
+h3 {
+  text-align: center;
+  padding-top: 0.75vh;
+  padding-bottom: 0.75vh;
+  border-bottom: solid black 2.5px;
+  margin-bottom: 0;
+  font-size: 1.5rem;
+}
+
+.project-selector-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 100%;
+  overflow-y: scroll;
+  padding-top: 1%;
+  padding-bottom: 10%;
+}
+
+.project-card {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-right: 2%;
+  margin-left: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 10vw;
+  height: 10vw;
+  gap: 5%;
+  cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAzElEQVRYR+2X0Q6AIAhF5f8/2jYXZkwEjNSVvVUjDpcrGgT7FUkI2D9xRfQETwNIiWO85wfINfQUEyxBG2ArsLwC0jioGt5zFcwF4OYDPi/mBYKm4t0U8ATgRm3ThFoAqkhNgWkA0jJLvaOVSs7j3qMnSgXWBMiWPXe94QqMBMBc1VZIvaTu5u5pQewq0EqNZvIEMCmxAawK0DNkay9QmfFNAJUXfgGgUkLaE7j/h8fnASkxHTz0DGIBMCnBeeM7AArpUd3mz2x3C7wADglA8BcWMZhZAAAAAElFTkSuQmCC) 14 0,pointer;
+}
+
+.project-card div img {
+  width: 7vw;
+  height: 7vw;
+  padding: 10%;
+  background-color: lightblue;
+}
+
+.project-card h3 {
+  display: inline-flex;
+}
+
+
+.project-display-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1%;
+  gap: 1%;
+  height: 100%;
+}
+
+.project-display-main {
+  width:65%;
+  height: 90%;
+}
+
+.project-display-side-container {
+  width:30%;
+  height: 90%;
+}
+
+.project-display-side {
+  width:100%;
+  height:90%;
+}
+
+.project-display-side-container button {
+  display: block;
+  margin-top: 1.5%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  height: 9%;
+  width: 100%;
+}
+
+.project-display-side h4 {
+  text-align: center;
+  padding-top: 0.75vh;
+  padding-bottom: 0.75vh;
+  border-bottom: solid black 2.5px;
+  margin-bottom: 0;
+  font-size: 1.25rem;
+}
