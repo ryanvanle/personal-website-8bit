@@ -1,6 +1,7 @@
 html {
   height: 100%;
 }
+
 body {
   background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(135,235,255,1) 25%, rgba(0,212,255,1) 100%);
   font-family: 'DogicaRegular';
@@ -8,8 +9,6 @@ body {
   font-style: normal;
   /* height: 100%; */
 }
-
-
 
 #test {
   background-color: white;
@@ -564,7 +563,57 @@ h3 {
 #ingredients div p {
   margin-bottom: 0;
 }
+
 #ingredients div img {
+  object-fit: contain;
   width: 2vw;
   height: 2vw;
+}
+
+.project-display-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+}
+
+.project-display-main div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.screenshot-container {
+  width: 90%;
+}
+
+.screenshot {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.link-button {
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-left: 4%;
+  padding-right: 4%;
+  background-color: #efefef;
+}
+
+.link-button p {
+  margin-left: 1.25vw;
+  margin-bottom: 0;
+}
+
+.link-button img {
+  width: 2vw;
+  height: 2vw;
+}
+
+.link-button-container {
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
 }
