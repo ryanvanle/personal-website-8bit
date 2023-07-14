@@ -13,18 +13,14 @@
  * CHANGE: Describe what your init function does here.
  */
   function init() {
-
-
     generateClouds();
     setInterval(function () { generateClouds(); }, 15000);
     setTimeout(function() { generateCharacters(); }, 3000);
-    generatePetals();
+    // generatePetals();
 
-
-
-    // if (getRandomIntBetween(1, 11) <= 10) { // should be a 40% chance of showing up
-    //   generatePetals();
-    // }
+    if (getRandomIntBetween(1, 11) <= 8) { // should be a 40% chance of showing up
+      generatePetals();
+    }
 
     ["touch", "click"].forEach(function (event) {
       let textBox = id("text-box-animation");
