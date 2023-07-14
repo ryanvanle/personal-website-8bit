@@ -65,21 +65,17 @@ ul {
 }
 
 li {
-  padding-top: 0.5%;
-
   flex:1;
   text-align: center;
   border-left: #000000 1px solid;
   border-right: #000000 1px solid;
   /* border-bottom: #000000 3px solid; */
   overflow: hidden;
-  /* padding-top: 0.35%; */
-  /* padding-bottom: 0.35%; */
+  padding-top: 0.45rem;
+  padding-bottom: 0.35rem;
 }
 
 li:hover {
-  background: blue;
-  color: white;
   cursor: pointer;
 }
 
@@ -680,6 +676,7 @@ h3 {
 
 .project-main {
   width: 75%;
+  margin-right: 2rem;
 }
 
 #project-stats {
@@ -709,6 +706,7 @@ h3 {
 }
 
 #project-details {
-  height:  calc(100% - 3.25rem);
+  height: calc(100% - 3.25rem);
   overflow-y: scroll;
+  overflow-x: hidden;
 }
