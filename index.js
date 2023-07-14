@@ -25,7 +25,6 @@
   }
 
   function generateClouds() {
-
     if (document.visibilityState === 'hidden') return;
     let randomInt = getRandomIntBetween(3,5);
 
