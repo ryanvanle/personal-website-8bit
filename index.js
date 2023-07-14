@@ -7,6 +7,7 @@
   window.addEventListener("load", init);
 
   function init() {
+    generateNavigation();
     generateClouds();
     setInterval(function () { generateClouds(); }, 15000);
     setTimeout(function() { generateCharacters(); }, 3000);
@@ -22,6 +23,33 @@
         turnOffTextBoxAnimation(textBox);
       });
     });
+  }
+
+  function generateNavigation() {
+    let navButtons = qsa("#nav li span");
+    for (let i = 0; i < navButtons.length; i++) {
+      navButtons[i].addEventListener("click", function() {
+        showScreen(navButtons[i]);
+      })
+    }
+
+  }
+
+  function showScreen(navButton) {
+    let selectedText = navButton.textContent.toLowerCase();
+    let screens = qsa("#test > div");
+
+    for (let i = 0; i < screens.length; i++) {
+      let currentScreenID = screens[i].id;
+      if (currentScreenID === selectedText) {
+        id(currentScreenID).classList.remove("hidden");
+      } else {
+        id(currentScreenID).classList.add("hidden");
+      }
+    }
+
+
+
   }
 
   function generateClouds() {
@@ -137,7 +165,6 @@
         element.style["-webkit-animation-delay"] = randomXDelay + "s," + randomYDelay + "ms";
         element.style["animation-delay"] = randomXDelay + "s," + randomYDelay + "ms";
         qs(".snowflakes").append(element);
-
       }, randomTime);
     });
   }
