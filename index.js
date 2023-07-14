@@ -4,14 +4,8 @@
 
   const CHARACTERS = ["link.gif", "squirtle.gif", "umbreon.gif", "sonic.gif"];
 
-  /**
- * Add a function that will be called when the window is loaded.
- */
   window.addEventListener("load", init);
 
-  /**
- * CHANGE: Describe what your init function does here.
- */
   function init() {
     generateClouds();
     setInterval(function () { generateClouds(); }, 15000);
@@ -149,16 +143,6 @@
     });
   }
 
-  /**
- * Make sure to always add a descriptive comment above
- * every function detailing what it's purpose is
- * @param {variabletype} someVariable This is a description of someVariable, including, perhaps, preconditions.
- * @returns {returntype} A description of what this function is actually returning
- */
-  function exampleFunction2(someVariable) {
-    /* SOME CODE */
-    return something;
-  }
 
   /** ------------------------------ Helper Functions  ------------------------------ */
   /**

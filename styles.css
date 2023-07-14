@@ -674,22 +674,41 @@ h3 {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
-.project-main, .project-stats {
-  width: 50%;
+.project-main {
+  width: 75%;
 }
 
-.project-stats ul {
+#project-stats {
+  width: 25%;
+}
+
+
+#project-stats ul {
   display: flex;
   flex-direction: column;
   border: none;
 }
 
-.project-stats li {
+#project-stats li {
   border: none;
 }
 
+#project-stats h4 {
+  border: none;
+  background-color: #00000000;
+  text-align: center;
+  margin: 0;
+  border-radius: 0;
+  border-bottom: solid black 2px;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
 
-
-
+#project-details {
+  height:  calc(100% - 3.25rem);
+  overflow-y: scroll;
+}
