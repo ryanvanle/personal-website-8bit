@@ -54,7 +54,13 @@
 
   function generateClouds() {
     if (document.visibilityState === 'hidden') return;
-    let randomInt = getRandomIntBetween(3,5);
+    let randomInt = getRandomIntBetween(3,7);
+    let randomTimes = [];
+
+    for (let i = 0; i < randomInt; i++) {
+      let randomDelay = getRandomIntBetween(1, 7) * 1000;
+      randomTimes.push(randomDelay)
+    }
 
     for (let i = 0; i < randomInt; i++) {
       let cloudImg = gen("img");
@@ -73,7 +79,7 @@
         cloudImg.remove();
       });
 
-      let randomDelay = getRandomIntBetween(1, 3) * 1000;
+      let randomDelay = randomTimes[i];
       setTimeout(function () {
         id("clouds").append(cloudImg);
       }, randomDelay);
@@ -82,7 +88,7 @@
 
 
   function generateCharacters() {
-    let randomInt = getRandomIntBetween(2, CHARACTERS.length);
+    let randomInt = getRandomIntBetween(1, CHARACTERS.length);
     let characterSet = new Set();
     let charactersArray = [];
 
