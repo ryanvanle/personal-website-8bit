@@ -7,6 +7,10 @@
   window.addEventListener("load", init);
 
   function init() {
+    window.onclick = e => {
+      console.log(e.target);  // to get the element
+      console.log(e.target.tagName);  // to get the element tag name alone
+    }
     generateNavigation();
     generateClouds();
     setInterval(function () { generateClouds(); }, 15000);
@@ -26,7 +30,7 @@
   }
 
   function generateNavigation() {
-    let navButtons = qsa("#nav li span");
+    let navButtons = qsa("#nav li");
     for (let i = 0; i < navButtons.length; i++) {
       navButtons[i].addEventListener("click", function() {
         showScreen(navButtons[i]);
