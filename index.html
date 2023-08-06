@@ -19,7 +19,7 @@
       <li><span>Resume</span></li>
       <li><span>Resources</span></li>
       <li><span>Credits</span></li>
-      <li>
+      <li id="nav-icons">
         <div>
           <a href="https://www.linkedin.com/in/ryanvanle/"><i class="nes-icon linkedin"></i></a>
           <a href="https://github.com/ryanvanle"><i class="nes-icon github"></i></a>
@@ -263,12 +263,24 @@
         <div class="nes-balloon from-left top-text-box">
           <p>
             <span style="--n:900" id="text-box-animation">
-              hello hello hello
+              Entire website development done by Ryan Le, me :D
             </span>
           </p>
         </div>
       </div>
-      credits
+      <div id="credits-main">
+        <div>
+          <h4>External resources used</h4>
+            <li>Pixel Corners effect created by Luke Bonaccorsi, <a href="https://pixelcorners.lukeb.co.uk/?radius=5&multiplier=3&border=1&border_width=1&border_color=#0099ff">resources page</a></li>
+            <li>NES.css created by B.C.Rikko, <a href="https://nostalgic-css.github.io/NES.css/">resources page</a></li>
+        </div>
+        <div>
+          <h4>Assets used</h4>
+          <li>Character assets from Nintendo, SEGA, Victor Interactive Software <br>(i do not own these assets)</li>
+          <li>Clouds from Picsart.com, <a href="https://picsart.com/i/sticker-247541604024212">resources page</a></li>
+        </div>
+
+      </div>
     </div>
 
     <div id="resume" class="hidden">
@@ -285,8 +297,8 @@
         </div>
       </div>
       <div id="resume-display">
-        <object data="files/Ryan_Le_Resume_02012023 (6).pdf" type="application/pdf" width="750px" height="750px">
-          <embed src="files/Ryan_Le_Resume_02012023 (6).pdf" type="application/pdf">
+        <object class="pixel-corners--wrapper" data="files/Ryan_Le_Resume_02012023 (6).pdf" type="application/pdf" width="750px" height="750px">
+          <embed class="pixel-corners--wrapper" src="files/Ryan_Le_Resume_02012023 (6).pdf" type="application/pdf">
               <p>This browser does not support PDFs. Please download the PDF to view it: <a href="files/Ryan_Le_Resume_02012023 (6).pdf">Download PDF</a>.</p>
           </embed>
       </object>
@@ -306,7 +318,10 @@
           </p>
         </div>
       </div>
-      resources
+
+      <div>
+        resources
+      </div>
     </div>
 
 
