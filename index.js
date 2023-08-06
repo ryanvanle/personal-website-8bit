@@ -13,15 +13,19 @@
     setTimeout(function() { generateCharacters(); }, 3000);
     // generatePetals();
 
-    if (getRandomIntBetween(1, 11) <= 8) { // should be a 40% chance of showing up
+    setInitialTextBoxesSpeed();
+
+    if (getRandomIntBetween(1, 11) <= 8) {
       generatePetals();
     }
 
     ["touch", "click"].forEach(function (event) {
-      let textBox = id("text-box-animation");
-      textBox.parentElement.parentElement.addEventListener(event, function() {
-        turnOffTextBoxAnimation(textBox);
-      });
+      let textBoxes = qsa(".text-box-animation");
+      for (let textBox of textBoxes) {
+        textBox.parentElement.parentElement.addEventListener(event, function() {
+          turnOffTextBoxAnimation(textBox);
+        });
+      }
     });
   }
 
@@ -47,10 +51,17 @@
         id(currentScreenID).classList.add("hidden");
       }
     }
-
-
-
   }
+
+  function setInitialTextBoxesSpeed() {
+    let textBoxes = qsa(".text-box-animation");
+
+    for (let textBox of textBoxes) {
+      let innerContentLength = textBox.textContent.length;
+      textBox.style.setProperty('--n', innerContentLength);
+    }
+  }
+
 
   function generateClouds() {
     if (document.visibilityState === 'hidden') return;
@@ -127,7 +138,8 @@
   }
 
   function turnOffTextBoxAnimation(textBox) {
-    textBox.id = "text-box-no-animation";
+    textBox.classList.remove("text-box-animation");
+    textBox.classList.add("text-box-no-animation");
     // need to convert this to class instead of id.
   }
 

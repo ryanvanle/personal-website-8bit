@@ -123,11 +123,11 @@ i {
   font-size: large;
 }
 
-#text-box-no-animation {
+.text-box-no-animation {
   color: black;
 }
 
-#text-box-animation {
+.text-box-animation {
   color:#00000000;
   background:
   linear-gradient(-90deg,black 5px,#0000 0) 10px 0,
