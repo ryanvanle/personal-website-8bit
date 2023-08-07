@@ -849,7 +849,6 @@ h3 {
 .shooting-star-head {
   position: absolute;
   background-color: white;
-
   width: 5px;
   height: 5px;
   filter: drop-shadow(0 0 6px #d7dff0);

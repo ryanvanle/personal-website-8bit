@@ -9,9 +9,7 @@
   function init() {
 
     generateNavigation();
-
-    setInterval(function() { if (Math.random() > 0.7) generateShootingStars(); }, 7000)
-
+    setInterval(function() { if (Math.random() > 0.5) generateShootingStars(); }, 15000)
     // generateClouds();
     // setInterval(function () { generateClouds(); }, 15000);
     setTimeout(function() { generateCharacters(); }, 3000);
@@ -96,6 +94,8 @@
     head.style.left = "-2vw";
     container.appendChild(head);
     let randomRotation = getRandomIntBetween(0, 50);
+    let randomAnimationTiming = getRandomIntBetween(8, 13);
+    head.style["animation-duration"] = randomAnimationTiming + "s";
     head.style.transform = `rotate(${randomRotation}deg)`
 
 
@@ -149,7 +149,7 @@
       cloudImg.alt = "cloud";
       cloudImg.style.width = randomSize + "vw";
       cloudImg.style.top = randomPosition + "%";
-      cloudImg.style["animation-duration"] = randomDuration +  "%";
+      cloudImg.style["animation-duration"] = randomDuration;
       cloudImg.addEventListener("animationend", function () {
         console.log("removed");
         cloudImg.remove();
