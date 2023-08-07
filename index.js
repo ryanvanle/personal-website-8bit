@@ -8,10 +8,10 @@
 
   function init() {
 
-    let shootingStar = id("shooting-star");
-    console.log(shootingStar);
-    particleFactory(shootingStar);
     generateNavigation();
+
+    setInterval(function() { if (Math.random() > 0.7) generateShootingStars(); }, 7000)
+
     // generateClouds();
     // setInterval(function () { generateClouds(); }, 15000);
     setTimeout(function() { generateCharacters(); }, 3000);
@@ -66,6 +66,44 @@
       let innerContentLength = textBox.textContent.length;
       textBox.style.setProperty('--n', innerContentLength);
     }
+  }
+
+  function generateShootingStars() {
+    if (document.visibilityState === 'hidden') return;
+
+    let randomAmount = getRandomIntBetween(2, 3);
+    let shootingStarContainer = qs(".stars");
+
+    for (let i = 0; i < randomAmount; i++) {
+      let shootingStar = generateShootingStarElement();
+      let randomDelay = getRandomIntBetween(1,5) * 1000;
+      setTimeout(function () {
+        shootingStarContainer.append(shootingStar);
+        particleFactory(shootingStar.firstChild);
+      }, randomDelay);
+    }
+
+  }
+
+
+  function generateShootingStarElement() {
+    let container = gen("div");
+    container.classList.add("shooting-star");
+
+    let head = gen("div");
+    head.classList.add("shooting-star-head");
+    head.style.top = getRandomIntBetween(0, 60) + "vh";
+    head.style.left = "-2vw";
+    container.appendChild(head);
+    let randomRotation = getRandomIntBetween(0, 50);
+    head.style.transform = `rotate(${randomRotation}deg)`
+
+
+    head.addEventListener("animationend", function () {
+      container.remove();
+    });
+
+    return container;
   }
 
   function generateStars() {
@@ -325,4 +363,5 @@
       particleFactory(meteor);
     }, 100);
   };
+
 })();

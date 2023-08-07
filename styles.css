@@ -846,41 +846,27 @@ h3 {
   }
 }
 
-.shooting-star-container {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-
-}
-
-#shooting-star {
+.shooting-star-head {
   position: absolute;
   background-color: white;
-  top: 50vh;
-  left: 1vw;
+
   width: 5px;
   height: 5px;
   filter: drop-shadow(0 0 6px #d7dff0);
-  animation: shoot 5s ease-in-out infinite
+  animation: shoot 8s ease-in-out 1
 }
 
 .particle {
   position: absolute;
   background: white;
+  left: -5vw;
   opacity: 50%;
   width: 4px;
   height: 4px;
 }
 
 @keyframes shoot {
-  from {
-    top: 0;
-    left: 0;
-  }
   to {
-    top: 100%;
-    left: 100%;
+    transform: translate(150vw, 75vh);
   }
-
 }
