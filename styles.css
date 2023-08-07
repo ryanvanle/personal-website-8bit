@@ -816,7 +816,6 @@ h3 {
 
 .stars img {
   position: absolute;
-
   box-shadow: 0 0 10px 2px white;
   animation: twinkle 2s infinite alternate ease-out;
   /* transform: rotate(75deg); */
@@ -845,4 +844,43 @@ h3 {
   #grass {
     filter: brightness(80%);
   }
+}
+
+.shooting-star-container {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+}
+
+#shooting-star {
+  position: absolute;
+  background-color: white;
+  top: 50vh;
+  left: 1vw;
+  width: 5px;
+  height: 5px;
+  filter: drop-shadow(0 0 6px #d7dff0);
+  animation: shoot 5s ease-in-out infinite
+}
+
+.particle {
+  position: absolute;
+  background: white;
+  opacity: 50%;
+  width: 4px;
+  height: 4px;
+}
+
+@keyframes shoot {
+  from {
+    top: 0;
+    left: 0;
+  }
+  to {
+    top: 100%;
+    left: 100%;
+  }
+
 }

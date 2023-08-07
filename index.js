@@ -7,6 +7,10 @@
   window.addEventListener("load", init);
 
   function init() {
+
+    let shootingStar = id("shooting-star");
+    console.log(shootingStar);
+    particleFactory(shootingStar);
     generateNavigation();
     // generateClouds();
     // setInterval(function () { generateClouds(); }, 15000);
@@ -278,4 +282,47 @@
     return Math.floor(Math.random() * max);
   }
 
+
+  // code from Jacksonkr: Thanks! :D
+  // https://stackoverflow.com/questions/32238800/css-how-can-i-make-a-particle-leave-a-trail-that-fades-away
+  class Particle {
+    constructor(parent) {
+      this.div = document.createElement("div");
+      this.div.classList.add("particle");
+      this.div.classList.add("twinkle");
+      this.div.id = "particle-" + Date.now();
+      parent.appendChild(this.div);
+
+      setTimeout(() => { // remove particle
+        if(this.driftIntervalId) clearInterval(this.driftIntervalId);
+        this.div.remove();
+      }, 400);
+    }
+
+    drift(speed = 1) {
+      var rad = Math.PI * Math.random();
+      this.driftIntervalId = setInterval(() => {
+        var left = +this.div.style.left.replace("px",'');
+        var top = +this.div.style.top.replace("px",'');
+
+        left += Math.sin(rad) * speed;
+        top += Math.cos(rad) * speed;
+
+        this.div.style.left = left + "px";
+        this.div.style.top = top + "px";
+      }, 10);
+    }
+  }
+
+  var particleFactory = function(meteor) {
+    var particle = new Particle(meteor.parentElement);
+    let rect = meteor.getBoundingClientRect()
+    particle.div.style.left = rect.left + "px";
+    particle.div.style.top = rect.top + "px";
+    particle.drift(0.4);
+
+    setTimeout(() => {
+      particleFactory(meteor);
+    }, 100);
+  };
 })();
