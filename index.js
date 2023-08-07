@@ -3,26 +3,23 @@
 (function() {
 
   const CHARACTERS = ["link.gif", "squirtle.gif", "umbreon.gif", "sonic.gif"];
+  let intervalsIDs = [];
+
 
   window.addEventListener("load", init);
 
   function init() {
 
+    generateBackgroundLogic();
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+      clearAllIntervals();
+      generateBackgroundLogic();
+    });
+
     generateNavigation();
-    setInterval(function() { if (Math.random() > 0.5) generateShootingStars(); }, 15000)
-    // generateClouds();
-    // setInterval(function () { generateClouds(); }, 15000);
     setTimeout(function() { generateCharacters(); }, 3000);
-    // generatePetals();
-
     setInitialTextBoxesSpeed();
-
-    generateStars();
-
-    if (getRandomIntBetween(1, 11) <= 0) { // last time at 8
-      generatePetals();
-    }
-
     ["touch", "click"].forEach(function (event) {
       let textBoxes = qsa(".text-box-animation");
       for (let textBox of textBoxes) {
@@ -31,6 +28,28 @@
         });
       }
     });
+  }
+
+  function generateBackgroundLogic() {
+
+
+    qs(".stars").innerHTML = "";
+    qs(".snowflakes").innerHTML = "";
+    id("clouds").innerHTML = "";
+
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      // dark mode
+      let shootingStarsID = setInterval(function() {
+        if (Math.random() <= 0.5) generateShootingStars()
+      }, 15000);
+      intervalsIDs.push(shootingStarsID);
+
+      generateStars();
+    } else {
+      let cloudsID = setInterval(function () { generateClouds(); }, 9000);
+      intervalsIDs.push(cloudsID)
+      if (Math.random() <= 0.8) generatePetals();
+    }
   }
 
   function generateNavigation() {
@@ -252,13 +271,6 @@
     });
   }
 
-
-  /** ------------------------------ Helper Functions  ------------------------------ */
-  /**
- * Note: You may use these in your code, but remember that your code should not have
- * unused functions. Remove this comment in your own code.
- */
-
   /**
  * Returns the element that has the ID attribute with the specified value.
  * @param {string} idName - element ID
@@ -318,6 +330,14 @@
 
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
+  }
+
+  function clearAllIntervals() {
+    for (let id of intervalsIDs) {
+      clearInterval(id);
+    }
+
+    intervalsIDs = [];
   }
 
 
