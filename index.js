@@ -8,14 +8,16 @@
 
   function init() {
     generateNavigation();
-    generateClouds();
-    setInterval(function () { generateClouds(); }, 15000);
+    // generateClouds();
+    // setInterval(function () { generateClouds(); }, 15000);
     setTimeout(function() { generateCharacters(); }, 3000);
     // generatePetals();
 
     setInitialTextBoxesSpeed();
 
-    if (getRandomIntBetween(1, 11) <= 8) {
+    generateStars();
+
+    if (getRandomIntBetween(1, 11) <= 0) { // last time at 8
       generatePetals();
     }
 
@@ -62,6 +64,27 @@
     }
   }
 
+  function generateStars() {
+    let randomAmount = getRandomIntBetween(75, 125);
+    let starsContainer = qs(".stars");
+    for (let i = 0; i < randomAmount; i++) {
+      let starImage = gen("img");
+      starImage.src="img/star.jpg"
+      starImage.alt = "star";
+      let randomVerticalPosition = getRandomIntBetween(1, 95);
+      let randomHorizontalPosition = getRandomIntBetween(1, 100);
+      starImage.style.top = randomVerticalPosition + "vh";
+      starImage.style.left = randomHorizontalPosition + "vw";
+
+      let randomRotation = getRandomIntBetween(0, 10) * 10
+      starImage.style.transform = `rotate(${randomRotation}deg)`
+      starImage.style["animation-delay"] = getRandomInt(3) + "s";
+      let size = getRandomIntBetween(4, 6);
+      starImage.width = size;
+      starImage.height = size;
+      starsContainer.append(starImage);
+    }
+  }
 
   function generateClouds() {
     if (document.visibilityState === 'hidden') return;
@@ -75,7 +98,7 @@
 
     for (let i = 0; i < randomInt; i++) {
       let cloudImg = gen("img");
-      let randomCloudNumber = getRandomIntBetween(3,5);
+      let randomCloudNumber = getRandomIntBetween(2,4);
       let randomDuration = getRandomIntBetween(20, 30);
       let randomPosition = getRandomIntBetween(0, 80);
       let randomSize = getRandomIntBetween(10, 20);
@@ -250,4 +273,9 @@
   function getRandomIndex(array) {
     return Math.floor(Math.random()*array.length);
   }
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
 })();
