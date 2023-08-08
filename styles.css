@@ -13,6 +13,7 @@ body {
   font-weight: normal;
   font-style: normal;
   /* height: 100%; */
+  overflow-y: hidden;
 }
 
 #test {
@@ -868,4 +869,87 @@ h3 {
   to {
     transform: translate(150vw, 75vh);
   }
+}
+
+
+#dog-container {
+  position: absolute;
+  width: 80vw;
+  margin: 1.65vh 10.25vw 10vh;
+  height: 25%;
+  top: 0;
+  left: 0;
+}
+
+#dog-container img {
+  height: 15%;
+  position: absolute;
+}
+
+#standing {
+  top: 0vh;
+  animation: move-up 0.5s ease-in 1;
+}
+
+#run {
+  animation: left-to-right 5s linear 1;
+  left: 65vw;
+}
+
+
+@keyframes move-up {
+  from {
+    top: 3vh;
+  } to {
+    top: 0vh;
+  }
+}
+
+#slide {
+  margin-top: 0.5vh;
+  width: 2.5vw;
+  object-fit: contain;
+  left: 74.9vw;
+  animation: slide 3s ease-out 1;
+}
+
+#sleep-1 {
+  margin-top: 0.5vh;
+  width: 3vw;
+  object-fit: contain;
+  left: 75vw;
+}
+
+#sleep {
+  margin-top: 0.5vh;
+  width: 2.6vw;
+  object-fit: contain;
+  left: 74vw;
+}
+
+#zzz {
+  width: 2%;
+  height: 0.1%;
+  object-fit: contain;
+  left: 77.7vw;
+  top: -1.75vh;
+}
+
+@keyframes left-to-right {
+  0% {
+    left: 0vw;
+  }
+  100% {
+    left: 65vw;
+  }
+}
+
+@keyframes slide {
+  0% {
+    left: 66vw;
+  }
+  100% {
+    left: 75.05vw;
+  }
+
 }

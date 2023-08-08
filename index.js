@@ -12,6 +12,8 @@
 
     generateBackgroundLogic();
 
+    generateDog();
+
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
       clearAllIntervals();
       generateBackgroundLogic();
@@ -32,7 +34,6 @@
 
   function generateBackgroundLogic() {
 
-
     qs(".stars").innerHTML = "";
     qs(".snowflakes").innerHTML = "";
     id("clouds").innerHTML = "";
@@ -43,7 +44,6 @@
         if (Math.random() <= 0.5) generateShootingStars()
       }, 15000);
       intervalsIDs.push(shootingStarsID);
-
       generateStars();
     } else {
       let cloudsID = setInterval(function () { generateClouds(); }, 9000);
@@ -59,7 +59,49 @@
         showScreen(navButtons[i]);
       })
     }
+  }
 
+  function generateDog() {
+    let sequenceIndex = 0;
+    let standing = {"src": "img/dog/dog-standing.gif", "id": "standing"}
+    let running = {"src": "img/dog/dog-run.gif", "id": "run"}
+    let slide = {"src": "img/dog/dog-laying.gif", "id": "slide"}
+    let sleeping = {"src": "img/dog/dog-sleeping.gif", "id": "sleep-1"}
+
+    let sequence = [standing, running, slide, sleeping];
+
+    let container = gen("div");
+    container.id = "dog-container";
+    let startingImage = gen("img");
+    startingImage.src = standing.src;
+    startingImage.id = standing.id;
+    container.appendChild(startingImage);
+
+
+    id("top-animation").appendChild(container);
+    startingImage.addEventListener("animationend", function () {
+      console.log("here");
+      displayNextHelper(sequence, sequenceIndex + 1);
+      startingImage.remove();
+    })
+  }
+
+  function displayNextHelper(sequence, index) {
+    if (index === sequence.length) {
+      return;
+    }
+
+    let image = gen("img");
+    image.src = sequence[index].src;
+    image.id = sequence[index].id;
+
+    let container = id("dog-container");
+    container.appendChild(image);
+
+    image.addEventListener("animationend", function () {
+      displayNextHelper(sequence, index + 1);
+      image.remove();
+    })
   }
 
   function showScreen(navButton) {
@@ -336,7 +378,6 @@
     for (let id of intervalsIDs) {
       clearInterval(id);
     }
-
     intervalsIDs = [];
   }
 
