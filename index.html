@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js" integrity="sha512-Z8CqofpIcnJN80feS2uccz+pXWgZzeKxDsDNMD/dJ6997/LSRY+W4NmEt9acwR+Gt9OHN0kkI1CTianCwoqcjQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="styles.css">
-    <script src="index.js"></script>
+    <script type="module" src="index.js"></script>
 </head>
 <body>
   <div id="test" class="pixel-corners">
@@ -28,7 +28,8 @@
       </li>
     </ul>
 
-    <div id="about">
+    <!-- here -->
+    <div id="about" class="hidden">
       <div class="pixel-corners--wrapper">
         <img class="pixel-corners" src="img/IMG_0889 copy.jpg" alt="Ryan Le">
       </div>
@@ -43,7 +44,7 @@
             <span style="--n:913" class="text-box-animation">
               Hello! Welcome to my website :DDD
               <br>
-              I'm Ryan Le, and I'm currently a second-year student at the University of Washington Seattle studying Computer Engineering! I primarily focus on Full-Stack Development while exploring other topics such as HCI, AI, Machine Learning, and Automation.
+              I'm Ryan Le, and I'm currently a third-year student at the University of Washington Seattle studying Computer Engineering! I primarily focus on Full-Stack Development while exploring other topics such as HCI, AI, Machine Learning, and Automation.
               <br>
               Currently this website is very work in progress, (i started on it april 15th, 2023) and is being worked on right now, but
               feel free to explore around!
@@ -71,7 +72,8 @@
         <div class="project-selector pixel-corners">
           <h3>Projects</h3>
           <div class="project-selector-container">
-            <div class="project-card pixel-corners">
+
+            <!-- <div class="project-card pixel-corners">
               <div class="pixel-corners--wrapper">
                 <img class="pixel-corners" src="img/logo.png" alt="logo">
               </div>
@@ -125,9 +127,12 @@
                 <img class="pixel-corners" src="img/logo.png" alt="logo">
               </div>
               <h4>Project Name</h4>
-            </div>
+            </div> -->
+
+
           </div>
         </div>
+        
         <div class="project-display pixel-corners">
           <h3>Project Title</h3>
           <div class="project-display-container">
@@ -175,12 +180,13 @@
               <button class="pixel-corners">Learn More</button>
             </div>
           </div>
+
         </div>
       </div>
     </div>
 
 
-    <div id="project-details" class="hidden">
+    <div id="project-details" class="">
 
       <button class="project-back-button pixel-corners">back</button>
 

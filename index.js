@@ -1,14 +1,34 @@
 "use strict";
+import createClient from 'https://esm.sh/@sanity/client@4.0.0'
+import imageUrlBuilder from 'https://esm.sh/@sanity/image-url'
 
 (function() {
 
+  let client;
+  let builder;
+
   const CHARACTERS = ["link.gif", "squirtle.gif", "umbreon.gif", "sonic.gif"];
   let intervalsIDs = [];
-
+  let projectNames = new Set();
+  let projectData = {};
+  const DATASET = "production";
+  const PROJECT_ID = "abaw9x1b";
 
   window.addEventListener("load", init);
 
   function init() {
+
+    client = createClient({
+      projectId: PROJECT_ID,
+      dataset: DATASET,
+      useCdn: true, // set to `true` to fetch from edge cache
+      apiVersion: '2023-03-01', // use current date (YYYY-MM-DD) to target the latest API version
+    });
+
+    builder = imageUrlBuilder(client);
+
+
+    generateProjects();
 
     generateBackgroundLogic();
 
@@ -84,6 +104,74 @@
       displayNextHelper(sequence, sequenceIndex + 1);
       startingImage.remove();
     })
+  }
+
+  async function generateProjects() {
+    let key = `https://abaw9x1b.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type+%3D%3D+%22project%22%5D`
+    let data = await fetch(key).then(statusCheck).then(res => res.json()).catch(function() {console.log("error")})
+    let projects = data.result;
+    for (let project of projects) {
+      let obj = {
+        title: project.title,
+        github: project.github,
+        figma: project.figma,
+        website: project.website,
+        youtube: project.youtube,
+        duration: project.duration,
+        skills: project.skills,
+        learned: project.learned,
+        blurb: project.blurb,
+        team: project.team,
+        goal: project.goal,
+        achieve: project.achieved,
+        context: project.context,
+        type: project.type,
+        logo: project.logo,
+        mainImage: project.mainImage
+      }
+
+      projectData[project.title] = obj;
+      projectNames.add(project.title);
+    }
+
+
+    for (let name of projectNames) {
+      let data = projectData[name];
+      let cardSelector = generateSideCard(data.logo, data.title)
+      let overviewCard = generateOverviewCard(data.title, data.mainImage, data.skills, cardSelector)
+    }
+  }
+
+  function generateOverviewCard(title, mainImage, skills, cardSelector) {
+    if (!title || !mainImage || !skills || !cardSelector) return null;
+    let sideContainer = gen("div");
+    sideContainer.classList.add("project-display-side-container")
+
+  }
+
+  function generateSideCard(logo, name) {
+    if (!logo) return null;
+    let imageElement = gen("img");
+    imageElement.src = urlFor(logo).quality(55).width(100).height(100).url()
+    imageElement.classList.add("pixel-corners");
+
+    let mainDiv = gen("div");
+    let wrapper = gen("div");
+
+    mainDiv.classList.add("project-card");
+    mainDiv.classList.add("pixel-corners");
+    wrapper.classList.add("pixel-corners--wrapper");
+
+    let titleElement = gen("h4");
+    titleElement.textContent = name;
+
+    wrapper.append(imageElement);
+    mainDiv.append(wrapper);
+    mainDiv.append(titleElement);
+
+    let selectorElement = qs(".project-selector-container");
+    selectorElement.append(mainDiv);
+    return mainDiv;
   }
 
   function displayNextHelper(sequence, index) {
@@ -380,6 +468,24 @@
     }
     intervalsIDs = [];
   }
+
+  async function statusCheck(response) {
+    if (!response.ok) {
+      throw new Error(await response.text());
+    }
+    return response;
+  }
+
+  /**
+   * Specify the image to be rendered. Accepts either a Sanity image record, an asset record, or just
+   * the asset id as a string. In order for hotspot/crop processing to be applied, the image record
+   * must be supplied, as well as both width and height.
+   */
+  function urlFor(source) {
+    return builder.image(source)
+  }
+
+
 
 
   // code from Jacksonkr: Thanks! :D

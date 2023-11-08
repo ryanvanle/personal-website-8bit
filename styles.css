@@ -507,11 +507,15 @@ h3 {
   background-color: lightblue;
 }
 
+.project-card div {
+  margin-top: 0.1rem;
+}
+
 .project-card h4 {
   display: inline-flex;
   /* width: 100%; */
   word-wrap: none;
-  font-size: 0.75vw;
+  font-size: 0.8rem;
   text-align: center;
 }
 
