@@ -14,6 +14,8 @@ import imageUrlBuilder from 'https://esm.sh/@sanity/image-url'
   const DATASET = "production";
   const PROJECT_ID = "abaw9x1b";
 
+  let projectNameToMainCard = {};
+
   window.addEventListener("load", init);
 
   function init() {
@@ -134,9 +136,12 @@ import imageUrlBuilder from 'https://esm.sh/@sanity/image-url'
       projectNames.add(project.title);
     }
 
+    // console.log(data.result);
 
     for (let name of projectNames) {
       let data = projectData[name];
+      if (!data.title || !data.mainImage || !data.skills) continue;
+
       let cardSelector = generateSideCard(data.logo, data.title)
       let overviewCard = generateOverviewCard(data.title, data.mainImage, data.skills, cardSelector)
     }
@@ -145,8 +150,107 @@ import imageUrlBuilder from 'https://esm.sh/@sanity/image-url'
   function generateOverviewCard(title, mainImage, skills, cardSelector) {
     if (!title || !mainImage || !skills || !cardSelector) return null;
     let sideContainer = gen("div");
-    sideContainer.classList.add("project-display-side-container")
+    sideContainer.classList.add("project-display");
+    sideContainer.classList.add("pixel-corners");
 
+
+    let titleContainer = gen("h3");
+    titleContainer.textContent = title;
+    sideContainer.append(titleContainer);
+
+    let displayContainer = gen("div");
+    displayContainer.classList.add("project-display-container");
+    sideContainer.append(displayContainer);
+
+    let displayMain = gen("div");
+    displayMain.classList.add("project-display-main");
+    displayMain.classList.add("pixel-corners");
+    displayContainer.append(displayMain);
+
+    let screenshotContainer = gen("div");
+    screenshotContainer.classList.add("screenshot-container");
+    screenshotContainer.classList.add("pixel-corners--wrapper");
+
+    let screenshot = gen("img");
+    screenshot.classList.add("screenshot")
+    screenshot.classList.add("pixel-corners");
+
+    screenshot.src = urlFor(mainImage);
+    screenshot.alt = "do this later PLEASE";
+    screenshotContainer.append(screenshot);
+    displayMain.append(screenshotContainer);
+
+    let linkContainer = gen("div");
+    linkContainer.classList.add("link-button-container");
+
+    // need to update this so it can be x buttons depending the project
+
+    // hardcode implementation for now.
+    let websiteButton = gen("div");
+    websiteButton.classList.add("link-button");
+    websiteButton.classList.add("pixel-corners");
+
+    let websiteIcon = gen("img");
+    websiteIcon.src = "img/code-icon.png";
+    websiteIcon.alt = "HTML element closed bracket icon, </>";
+    websiteButton.append(websiteIcon)
+    let websiteText = gen("p");
+    websiteText.textContent = "Website";
+    websiteButton.append(websiteText)
+
+    let gitButton = gen("div");
+    gitButton.classList.add("link-button");
+    gitButton.classList.add("pixel-corners");
+
+    let gitIcon = gen("img");
+    gitIcon.src = "img/github-mark-white 2.png";
+    gitIcon.alt = "Github logo in black";
+    let codeText = gen("p");
+    codeText.textContent = "Code";
+    gitButton.append(gitIcon)
+    gitButton.append(codeText);
+
+    linkContainer.append(websiteButton);
+    linkContainer.append(gitButton);
+    displayMain.append(linkContainer);
+
+
+    let ingredientContainerWrapper = gen("div");
+    ingredientContainerWrapper.classList.add("project-display-side-container");
+
+    let ingredientContainer = gen("div");
+    ingredientContainer.classList.add("project-display-side");
+    ingredientContainer.classList.add("pixel-corners");
+    ingredientContainerWrapper.append(ingredientContainer);
+
+    let ingredientText = gen("h4");
+    ingredientText.textContent = "ingredients";
+    ingredientContainer.append(ingredientText);
+
+    let ingredientList = gen("div");
+    ingredientList.id = "ingredients";
+
+    for (let skill of skills) {
+      let skillContainer = gen("div");
+      let skillTextContainer = gen("p");
+      skillTextContainer.textContent = skill;
+      skillContainer.append(skillTextContainer);
+      ingredientList.append(skillContainer);
+    }
+
+    ingredientContainer.append(ingredientList);
+
+    let learnMoreButton = gen("button");
+    learnMoreButton.classList.add("pixel-corners");
+    learnMoreButton.textContent = "Learn More";
+    ingredientContainerWrapper.append(learnMoreButton);
+
+    displayContainer.append(ingredientContainerWrapper);
+
+    projectNameToMainCard[title] = sideContainer;
+
+    sideContainer.id = "display";
+    return sideContainer;
   }
 
   function generateSideCard(logo, name) {
@@ -171,7 +275,33 @@ import imageUrlBuilder from 'https://esm.sh/@sanity/image-url'
 
     let selectorElement = qs(".project-selector-container");
     selectorElement.append(mainDiv);
+
+    mainDiv.addEventListener("click", updateProjectView);
+
     return mainDiv;
+  }
+
+  function updateProjectView() {
+
+    let cardElements = qs(".project-selector-container");
+
+    for (let card of cardElements.children) {
+      card.classList.remove("selected");
+    }
+
+    this.classList.add("selected");
+
+    let text = qs(".selected").lastChild.textContent;
+    displaySideCard(text);
+  }
+
+  function displaySideCard(text) {
+    let currentDisplayed = id("display");
+    currentDisplayed.remove();
+
+    let container = qs(".project-container");
+    container.append(projectNameToMainCard[text]);
+
   }
 
   function displayNextHelper(sequence, index) {
@@ -236,6 +366,7 @@ import imageUrlBuilder from 'https://esm.sh/@sanity/image-url'
   function generateShootingStarElement() {
     let container = gen("div");
     container.classList.add("shooting-star");
+    container.style["aria-hidden"] = true;
 
     let head = gen("div");
     head.classList.add("shooting-star-head");
@@ -354,7 +485,6 @@ import imageUrlBuilder from 'https://esm.sh/@sanity/image-url'
   function turnOffTextBoxAnimation(textBox) {
     textBox.classList.remove("text-box-animation");
     textBox.classList.add("text-box-no-animation");
-    // need to convert this to class instead of id.
   }
 
   function generatePetals() {
@@ -484,9 +614,6 @@ import imageUrlBuilder from 'https://esm.sh/@sanity/image-url'
   function urlFor(source) {
     return builder.image(source)
   }
-
-
-
 
   // code from Jacksonkr: Thanks! :D
   // https://stackoverflow.com/questions/32238800/css-how-can-i-make-a-particle-leave-a-trail-that-fades-away
