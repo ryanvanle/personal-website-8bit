@@ -14,6 +14,7 @@ import imageUrlBuilder from 'https://esm.sh/@sanity/image-url'
   const DATASET = "production";
   const PROJECT_ID = "abaw9x1b";
 
+  let projectNameToBlurb = {};
   let projectNameToMainCard = {};
 
   window.addEventListener("load", init);
@@ -135,6 +136,7 @@ import imageUrlBuilder from 'https://esm.sh/@sanity/image-url'
       projectData[project.title] = obj;
       projectNames.add(project.title);
     }
+
 
     // console.log(data.result);
 
@@ -277,8 +279,29 @@ import imageUrlBuilder from 'https://esm.sh/@sanity/image-url'
     selectorElement.append(mainDiv);
 
     mainDiv.addEventListener("click", updateProjectView);
+    mainDiv.addEventListener("click", updateProjectBlurb);
 
     return mainDiv;
+  }
+
+  function updateProjectBlurb() {
+    let text = qs(".selected").lastChild.textContent;
+    let blurb = projectData[text]["blurb"];
+
+
+    let blurbElement = id("blurb");
+    blurbElement.innerHTML = "";
+
+    let p = gen("p");
+    let span = gen("span");
+    span.classList.add("text-box-animation");
+
+    let animationLength = blurb.length
+    span.style.setProperty('--n', animationLength);
+    span.textContent = blurb;
+
+    p.append(span);
+    blurbElement.append(p);
   }
 
   function updateProjectView() {

@@ -944,6 +944,10 @@ h3 {
   top: -1.75vh;
 }
 
+#blurb {
+  font-size: 0.85rem;
+}
+
 @keyframes left-to-right {
   0% {
     left: 0vw;
@@ -960,5 +964,4 @@ h3 {
   100% {
     left: 75.05vw;
   }
-
 }
