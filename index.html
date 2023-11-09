@@ -13,7 +13,7 @@
 </head>
 <body>
   <div id="test" class="pixel-corners">
-    <ul id="nav">
+    <ul id="nav" role="navigation">
       <li><span>About</span></li>
       <li><span>Portfolio</span></li>
       <li><span>Resume</span></li>
@@ -21,17 +21,17 @@
       <li><span>Credits</span></li>
       <li id="nav-icons">
         <div>
-          <a href="https://www.linkedin.com/in/ryanvanle/"><i class="nes-icon linkedin"></i></a>
-          <a href="https://github.com/ryanvanle"><i class="nes-icon github"></i></a>
-          <a href="mailto: rle253@cs.uw.edu"><i class="nes-icon gmail"></i></a>
+          <a href="https://www.linkedin.com/in/ryanvanle/" aria-label="Ryan's LinkedIn Link"><i class="nes-icon linkedin" aria-label="8-bit Stylized LinkedIn Logo" role="link"></i></a>
+          <a href="https://github.com/ryanvanle" aria-label="Ryan's Github Link"><i class="nes-icon github" aria-label="8-bit Stylized Github Logo" role="link"></i></i></a>
+          <a href="mailto: rle253@cs.uw.edu" aria-label="Ryan's Email Link"></a><i class="nes-icon gmail" aria-label="8-bit Stylized Gmail Logo" role="link"></i></i></a>
         </div>
       </li>
     </ul>
 
     <!-- here -->
-    <div id="about" class="">
+    <div id="about">
       <div class="pixel-corners--wrapper">
-        <img class="pixel-corners" src="img/IMG_0889 copy.jpg" alt="Ryan Le">
+        <img class="pixel-corners" src="img/IMG_0889 copy.jpg" alt="Ryan Le, Asian American male smiling with Curly-wavy hair with a black blazer and white sweater with pink cherry blossom trees in the background">
       </div>
       <div>
         <div id="title">
@@ -41,7 +41,7 @@
         </div>
         <div id="text-box" class="nes-balloon from-left">
           <p>
-            <span style="--n:913" class="text-box-animation">
+            <span style="--n:913" class="text-box-animation" aria-live="polite">
               Hello! Welcome to my website :DDD.
               I'm Ryan Le, and I'm currently a third-year student at the University of Washington Seattle studying Computer Engineering! I primarily focus on Full-Stack Development while exploring other topics such as HCI, AI, Machine Learning, and Automation.
               Currently this website is very work in progress, (i started on it april 15th, 2023) and is being worked on right now, but
@@ -56,12 +56,12 @@
     <div id="portfolio" class="hidden">
       <div class="top-text-box-div">
         <div class="pixel-corners--wrapper">
-          <img class="pixel-corners" src="img/IMG_0889 copy.jpg" alt="Ryan Le">
+          <img class="pixel-corners" src="img/IMG_0889 copy.jpg" alt="Ryan Le, Asian American male smiling with Curly-wavy hair with a black blazer and white sweater with pink cherry blossom trees in the background">
         </div>
-        <div class="nes-balloon from-left top-text-box">
+        <div class="nes-balloon from-left top-text-box"  id="blurb" aria-live="polite">
           <p>
-            <span style="--n:900" class="text-box-animation" id="blurb">
-              hello hello hello
+            <span style="--n:900" class="text-box-animation">
+              Welcome to the Portfolio Page! Select a project and I'll tell you all about it!
             </span>
           </p>
         </div>
@@ -132,19 +132,19 @@
         </div>
 
         <div id="display" class="project-display pixel-corners">
-          <h3>Project Title</h3>
-          <div class="project-display-container">
+          <h3>Select a project in the selector!</h3>
+          <!-- <div class="project-display-container">
             <div class="project-display-main pixel-corners">
               <div class="screenshot-container pixel-corners--wrapper">
                 <img class="screenshot pixel-corners" src="img/screenshot.png">
               </div>
 
               <div class="link-button-container">
-                <div class="link-button pixel-corners">
+                <div role="button" class="link-button pixel-corners">
                   <img src="img/code-icon.png">
                   <p>Website</p>
                 </div>
-                <div class="link-button pixel-corners">
+                <div role="button" class="link-button pixel-corners">
                   <img src="img/github-mark-white 2.png">
                   <p>Code</p>
                 </div>
@@ -174,7 +174,7 @@
               </div>
               <button class="pixel-corners">Learn More</button>
             </div>
-          </div>
+          </div> -->
 
         </div>
       </div>
@@ -264,7 +264,7 @@
         </div>
         <div class="nes-balloon from-left top-text-box">
           <p>
-            <span style="--n:900" class="text-box-animation">
+            <span style="--n:900" class="text-box-animation" aria-live="polite">
               Entire website development done by Ryan Le, me :D
             </span>
           </p>
@@ -292,7 +292,7 @@
         </div>
         <div class="nes-balloon from-left top-text-box">
           <p>
-            <span style="--n:900" class="text-box-animation">
+            <span style="--n:900" class="text-box-animation" aria-live="polite">
               Here is my resume! It was last updated, August 2023!
             </span>
           </p>
@@ -314,7 +314,7 @@
         </div>
         <div class="nes-balloon from-left top-text-box">
           <p>
-            <span style="--n:900" class="text-box-animation">
+            <span style="--n:900" class="text-box-animation" aria-live="polite">
               hello hello hello
             </span>
           </p>
@@ -328,11 +328,11 @@
   </div>
 
 
-  <div class="snowflakes"></div>
-  <div class="stars"></div>
-  <div id="clouds"></div>
-  <div id="top-animation">
-    <div id="dog-container">
+  <div class="snowflakes" aria-hidden="true"></div>
+  <div class="stars" aria-hidden="true"></div>
+  <div id="clouds" aria-hidden="true"></div>
+  <div id="top-animation" aria-hidden="true">
+    <div id="dog-container" aria-hidden="true">
       <!-- <img src="img/dog/dog-standing.gif" id="standing">
       <img src="img/dog/dog-run.gif" id="run">
       <img src="img/dog/dog-laying.gif" id="slide">
@@ -344,7 +344,7 @@
 
 
   <footer id="grass">
-    <div id="running-container">
+    <div id="running-container" aria-hidden="true">
 
     </div>
     <p>Copyright  2023</p>

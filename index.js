@@ -178,7 +178,7 @@ import imageUrlBuilder from 'https://esm.sh/@sanity/image-url'
     screenshot.classList.add("pixel-corners");
 
     screenshot.src = urlFor(mainImage);
-    screenshot.alt = "do this later PLEASE";
+    screenshot.alt = "screenshot of the" + title + " website";
     screenshotContainer.append(screenshot);
     displayMain.append(screenshotContainer);
 
@@ -188,21 +188,34 @@ import imageUrlBuilder from 'https://esm.sh/@sanity/image-url'
     // need to update this so it can be x buttons depending the project
 
     // hardcode implementation for now.
+    let anchorTagWebsite = gen("a");
+    anchorTagWebsite.href = projectData[title]["website"];
+    anchorTagWebsite.classList.add("link-button");
+    anchorTagWebsite.classList.add("pixel-corners");
+
     let websiteButton = gen("div");
-    websiteButton.classList.add("link-button");
-    websiteButton.classList.add("pixel-corners");
+    // websiteButton.classList.add("link-button");
+    // websiteButton.classList.add("pixel-corners");
+    anchorTagWebsite.append(websiteButton);
 
     let websiteIcon = gen("img");
     websiteIcon.src = "img/code-icon.png";
     websiteIcon.alt = "HTML element closed bracket icon, </>";
     websiteButton.append(websiteIcon)
+
     let websiteText = gen("p");
     websiteText.textContent = "Website";
     websiteButton.append(websiteText)
+    websiteButton.role = "button";
+
+    let anchorTagGithub = gen("a");
+    anchorTagGithub.href = projectData[title]["github"];
+    anchorTagGithub.classList.add("link-button");
+    anchorTagGithub.classList.add("pixel-corners");
 
     let gitButton = gen("div");
-    gitButton.classList.add("link-button");
-    gitButton.classList.add("pixel-corners");
+    gitButton.role = "button";
+    anchorTagGithub.append(gitButton);
 
     let gitIcon = gen("img");
     gitIcon.src = "img/github-mark-white 2.png";
@@ -212,8 +225,8 @@ import imageUrlBuilder from 'https://esm.sh/@sanity/image-url'
     gitButton.append(gitIcon)
     gitButton.append(codeText);
 
-    linkContainer.append(websiteButton);
-    linkContainer.append(gitButton);
+    linkContainer.append(anchorTagWebsite);
+    linkContainer.append(anchorTagGithub);
     displayMain.append(linkContainer);
 
 
@@ -260,8 +273,11 @@ import imageUrlBuilder from 'https://esm.sh/@sanity/image-url'
     let imageElement = gen("img");
     imageElement.src = urlFor(logo).quality(55).width(100).height(100).url()
     imageElement.classList.add("pixel-corners");
+    imageElement.alt = name + "Logo";
 
     let mainDiv = gen("div");
+    mainDiv.role = "button";
+
     let wrapper = gen("div");
 
     mainDiv.classList.add("project-card");
